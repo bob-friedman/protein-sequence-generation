@@ -10,6 +10,6 @@ The Python code files may be run in Google Colab. They are currectly formatted f
 
 These code files are for examples only on creating a generative model for protein sequence data. They may be extended upon as described in the LICENSE file (Apache License v2.0). This license is identical to that of the Huggingface transformers API. It is an open-source and permissive software license.
 
-The concept is based on the ProtGPT2 research study and published article:
-https://www.nature.com/articles/s41467-022-32007-7 (publication)
+The concept is based on the ProtGPT2 research study and published article: \
+https://www.nature.com/articles/s41467-022-32007-7 (publication) \
 https://huggingface.co/nferruz/ProtGPT2 (files of generative model of protein sequences)
