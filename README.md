@@ -15,7 +15,7 @@ The above format considers each protein sequence as a single unit. To consider e
 <|endoftext|>M F V F L V L L P L V S S Q C V N L T T R T Q L P P A Y T <|endoftext|>\
 <|endoftext|>M F V F L V L L P L V S S Q C V N L T T R T Q L P P A Y T <|endoftext|>
 
-With this method, the tokenizer (byte pair encoding) should match each single amino acid to a separate token, in contrast with Method #1 where each token frequently matches to a larger subsequence of amino acids. In this case, these subsequences may vary from and include blocks of several or more amino acids. During testing, Method #2 is resulting in the generation of sequences that better resemble a prediction of sequence data. Moreover, during the prediction step (prediction.py) under Method #2, the input sequence should be separated by spaces, like so:\
+With this method, the tokenizer (byte pair encoding) should match each single amino acid to a separate token, in contrast with Method #1 where each token frequently matches to a larger subsequence of amino acids. During testing, Method #2 is resulting in the generation of sequences that better resemble a prediction of sequence data. Moreover, during the prediction step (prediction.py) under Method #2, the input sequence should be separated by spaces, like so:\
 $sequence = 'M F V F L V L L P L V S S Q C V N L T T R T'
 
 ## Running the Model
