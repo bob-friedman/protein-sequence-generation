@@ -7,7 +7,7 @@ An unsupported Perl script (fasta_md5sum.pl) is in the unsupported directory of 
 
 ## Protein Sequence Data Format
 ### Method #1
-The Python v3 code in this repository is based on use of the GPT-2 model and the Huggingface transformers API. The code requires an input data file (protein sequences). If the sequence data is originally in Fasta format, then it would be converted to the format below before running the Python code in this repository. The sequence may be in the following format, where each sequence is flanked by <|endoftext|> tokens as described by the GPT-2 model, and each sequence and its tokens are along a single line in the file:
+The Python v3 code in this repository is based on use of the GPT-2 model and the Huggingface transformers API. The code requires an input data file (protein sequences). If the sequence data is originally in Fasta format, then it would be converted to the format below before running the Python code. The sequence may be in the following format, where each sequence is flanked by <|endoftext|> tokens as described by the GPT-2 model, and each sequence and its tokens are along a single line in the file:
 
 <|endoftext|>MFVFLVLLPLVSSQCVNLTTRTQLPPAYTNSFTRGVYYPDKVFRSSVLHSTQDLFLP<|endoftext|>\
 <|endoftext|>MFVFLVLLPLVSSQCVNLTTRTQLPPAYTNSFTRGVYYPDKVFRSSVLHSTQDLFLP<|endoftext|>\
