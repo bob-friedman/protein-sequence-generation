@@ -1,9 +1,9 @@
 # Generative Model for Protein Sequences
 
-## Redundancy in Sequence Data
+## Preparation of Sequence Data
 The common format of protein sequences is Fasta. These files are available from sources such as NCBI, EMBL, Ensembl, and UniProt. UniProt has different versions of sequence data where each version has a different level of sequence redundancy removed. UniProt labels these versions as UniRef datasets, such as UniRef50. They use software and algorithms to achieve this result, such as the MMseqs2 algorithm. This kind of filter of the data may lead to better results from the Generative Model. However, it is possible to write scripts in the Perl language to filter by simpler criteria.
 
-An unsupported Perl script (fasta_md5sum.pl) is in the unsupported directory of this repository. It removes redundant and identical sequences in a Fasta formatted file. Identical sequences are defined as having the same amino acid sequence and the same length. This code uses the MD5 hash algorithm to find these redundant sequences. The resulting output must be validated against the original file.
+An unsupported Perl script (fasta_md5sum.pl) is in the unsupported directory of this repository. It removes redundant and identical sequences in a Fasta formatted file. Identical sequences are defined as having the same amino acid sequence and length. This code uses the MD5 hash algorithm to find this redundancy. The resulting output must be validated against the original file.
 
 ## Protein Sequence Data Format
 ### Method #1
