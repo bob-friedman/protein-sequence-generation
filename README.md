@@ -26,11 +26,11 @@ $sequence = 'M F V F L V L L P L V S S Q C V N L T T R T'
 Below is a script in Perl that reads standard input (STDIN) in the above sequence formats and then adds a space after each letter (converts the above sequence as shown in Method #1 to the sequence in Method #2). The resulting output should be verified that it appears correctly (tested in Windows).
 ```
 while(<>){
-	$_=~s/\n//g;
-	$_=~s/<\|endoftext\|>//g;
-	$_=~s/(?<=[a-z])/ /ig;
-	$_=~s/\r//g;
-	print "<|endoftext|>",$_,"<|endoftext|>\n";
+   $_=~s/\n//g;
+   $_=~s/<\|endoftext\|>//g;
+   $_=~s/(?<=[a-z])/ /ig;
+   $_=~s/\r//g;
+   print "<|endoftext|>",$_,"<|endoftext|>\n";
 }
 ```
 
