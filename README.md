@@ -28,7 +28,7 @@ Below is a script in Perl that reads standard input (STDIN) in the above sequenc
 while(<>){
 	$_=~s/\n//g;
 	$_=~s/<\|endoftext\|>//g;
-	$_=~s/(?<=[a-z])(?=[a-z])/ /ig;
+	$_=~s/(?<=[a-z])/ /ig;
 	$_=~s/\r//g;
 	print "<|endoftext|>",$_,"<|endoftext|>\n";
 }
