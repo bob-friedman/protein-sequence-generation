@@ -35,7 +35,7 @@ while(<>){
 ```
 
 ## Running the Model
-The Python code files may be run in Google Colab. They are also currectly formatted for use of Google Drive, but the code may be changed for running on a local server or a different method of remote access. In the current code, the input file is named dataset.fas.
+The Python code files may be run in Google Colab. The code is currently for use with Google Drive, but the code may be changed for running on a local server or a different method of remote access. In the current code, the input file is named dataset.fas.
 
 For changing the expected length of prediction of a protein sequence, the max_length parameter value may be modified in prediction.py. There is another other parameters in the code, such as in tokenizer.py. These parameter values may be changed during testing. There is information on the parameters at Huggingface.
 
