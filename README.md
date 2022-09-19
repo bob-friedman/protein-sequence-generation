@@ -41,6 +41,8 @@ For changing the expected length of prediction of a protein sequence, the max_le
 
 Lastly, the prediction step in prediction.py requires a partial sequence to serve as the prompt to begin the prediction. In the code, the partial sequence is assigned to the variable "sequence". This input sequence prompts the generative model for generating the tokens and protein sequence.
 
+The code should be inspected and run in the following order, including any input file requirements and modifying of parameters: tokenizer.py, train.py, prediction.py. There are further details on the method in a manuscript, but it is in review and not yet published.
+
 ## License
 These code files are for examples on creating a generative model for protein sequence data. They may be expanded upon as described in the LICENSE file (Apache License v2.0). This license is identical to the Huggingface transformers API. It is an open-source and permissive software license.
 
