@@ -28,14 +28,73 @@ Example usage: `python scripts/prepare_dataset.py input_sequences.txt > dataset.
 
 Internally, this script uses a utility function `format_sequence_with_spaces` located in `protein_utils.py`. This function handles the core logic of removing unwanted characters (newlines, `<|endoftext|>` tokens) and inserting spaces between letters. The `prediction.py` script also utilizes this function to correctly format its input sequence.
 
-## Running the Model
-The Python code files may be run in Google Colab. The code is currently for use with Google Drive, but the code may be changed for running on a local server or a different method of remote access. In the current code, the input file is named dataset.fas.
+## Running the Model (PyTorch Transformer)
 
-For changing the expected length of prediction of a protein sequence, the max_length parameter value may be modified in prediction.py. There are other impactful parameters in the code, such as in tokenizer.py. These parameter values may be changed during testing. There is information on the parameters at Huggingface.
+This project uses a custom PyTorch-based Transformer model for generating protein sequences. The workflow involves three main scripts: `tokenizer.py` (for preparing the tokenizer), `train_pytorch.py` (for training the model), and `predict_pytorch.py` (for generating sequences).
 
-Lastly, the prediction step in prediction.py requires a partial sequence to serve as the prompt to begin the prediction. In the code, the partial sequence is assigned to the variable "sequence". This input sequence prompts the generative model for generating the tokens and protein sequence.
+### 1. Prepare the Dataset (`dataset.fas`)
 
-The code should be inspected and run in the following order, including any input file requirements and modifying of parameters: tokenizer.py, train.py, prediction.py. There are further details on the method in a manuscript, but it is in review and not yet published.
+The model expects input data in a file typically named `dataset.fas`. This file should contain one protein sequence per line, with amino acids separated by spaces, and each sequence wrapped with `<|endoftext|>` tokens. This is referred to as "Method #2" in the "Protein Sequence Data Format" section.
+
+Example line in `dataset.fas`:
+`<|endoftext|> M F V F L V L L P L V S S Q C V N L T T R T Q L P P A Y T <|endoftext|>`
+
+You can use the `scripts/prepare_dataset.py` script to convert sequences from a condensed format (Method #1) or plain sequences into the required `dataset.fas` format.
+Example: `python scripts/prepare_dataset.py your_raw_sequences.txt > dataset.fas`
+
+### 2. Train the Tokenizer
+
+A Byte-Pair Encoding (BPE) tokenizer is trained on your `dataset.fas`. The `tokenizer.py` script handles this.
+```bash
+python tokenizer.py
+```
+This script will read your dataset (ensure the path within `tokenizer.py` points to your `dataset.fas`, e.g., `/content/drive/MyDrive/GPT2/dataset.fas` or modify the script for a local path) and save the trained tokenizer as `protein_tokenizer.json` (e.g., in `/content/drive/MyDrive/GPT2/protein_tokenizer.json`). This path will be needed for training and prediction.
+The tokenizer uses `<|endoftext|>` as a special token for beginning/end of sequence and `[PAD]` as the padding token.
+
+### 3. Train the PyTorch Transformer Model
+
+Use the `train_pytorch.py` script to train the custom Transformer model.
+You'll need to provide paths to your tokenizer and dataset, and specify model/training hyperparameters.
+
+Example usage:
+```bash
+python train_pytorch.py \
+    --tokenizer_path /path/to/your/protein_tokenizer.json \
+    --dataset_path /path/to/your/dataset.fas \
+    --model_output_dir ./trained_protein_transformer \
+    --epochs 10 \
+    --batch_size 16 \
+    --learning_rate 1e-4 \
+    --block_size 128 \
+    --d_model 256 \
+    --nhead 4 \
+    --d_hid 512 \
+    --nlayers 3 \
+    --dropout 0.1 \
+    --save_every 1
+```
+Adjust paths and hyperparameters as needed. Model checkpoints will be saved in the `--model_output_dir`.
+
+### 4. Generate Sequences
+
+Use `predict_pytorch.py` to generate sequences using a trained model checkpoint.
+Provide the tokenizer, model checkpoint, model hyperparameters (matching the trained model), and a prompt sequence.
+
+Example usage:
+```bash
+python predict_pytorch.py \
+    --tokenizer_path /path/to/your/protein_tokenizer.json \
+    --model_checkpoint_path ./trained_protein_transformer/model_epoch_10.pt \
+    --prompt_sequence "MFVFL" \
+    --max_length 100 \
+    --block_size 128 \
+    --d_model 256 \
+    --nhead 4 \
+    --d_hid 512 \
+    --nlayers 3 \
+    --dropout 0.1
+```
+This will print the generated sequence to the console.
 
 ## License
 These code files are for examples on creating a generative model for protein sequence data. They may be expanded upon as described in the LICENSE file (Apache License v2.0). This license is identical to the Huggingface transformers API. It is an open-source and permissive software license.
