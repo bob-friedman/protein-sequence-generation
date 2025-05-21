@@ -96,6 +96,21 @@ python predict_pytorch.py \
 ```
 This will print the generated sequence to the console.
 
+
+## Testing and Feedback
+
+The project has recently been updated to a new PyTorch-based Transformer pipeline. We encourage users to:
+*   Test the new `tokenizer.py`, `train_pytorch.py`, and `predict_pytorch.py` scripts with their own data and environments.
+*   Report any issues, bugs, or usability concerns they encounter.
+*   Share feedback on the new model's performance and the overall workflow.
+
+Your feedback is valuable for improving the project! Please raise an issue in the repository for any bugs or suggestions.
+
+## Acknowledgements
+
+Portions of this project were developed with the assistance of Google AI (Jules).
+The underlying concepts for protein sequence generation draw inspiration from the original ProtGPT2 work and the Hugging Face Transformers library.
+
 ## License
 These code files are for examples on creating a generative model for protein sequence data. They may be expanded upon as described in the LICENSE file (Apache License v2.0). This license is identical to the Huggingface transformers API. It is an open-source and permissive software license.
 
