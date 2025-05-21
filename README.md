@@ -3,7 +3,7 @@
 ## Finding the Sequence Data
 A common format of protein sequences is "Fasta". In general, protein sequence files are available from the major genetic database sites, such as at NCBI, EMBL, Ensembl, and UniProt. The UniProt site is of particular interest since it has sequence data with sequence redundancy removed at various levels. UniProt labels these versions as UniRef datasets, such as UniRef50. They use software to process sequence-level redundancy, such as the MMseqs2 algorithm. This kind of filter of the data may lead to better results where using a generative model of sequence construction. However, it is also possible to write scripts, such as in the Perl language, to filter the data by simpler criteria.
 
-An unsupported Perl script (fasta_md5sum.pl) is in the unsupported directory of this repository. It removes redundant and identical sequences in a Fasta formatted file by a MD5 hash algorithm. Identical sequences are defined as having the same amino acid sequence and length. The resulting output must be verified against the original file.
+A Python script, `scripts/deduplicate_fasta.py`, is available to remove redundant sequences from a Fasta formatted file. It uses an MD5 hash algorithm to identify identical sequences (defined as having the same amino acid sequence and length after whitespace removal). The script takes a Fasta file as input and prints the unique sequences to standard output. For example: `python scripts/deduplicate_fasta.py input.fasta > output_unique.fasta`.
 
 ## Protein Sequence Data Format
 ### Method #1
@@ -23,16 +23,10 @@ The above format considers each protein sequence as a single unit. To instead co
 With this method, the tokenizer, based on byte pair encoding, should match each single amino acid to a separate token, in contrast with Method #1 where each token usually matches to a subsequence. During testing, Method #2 is resulting in the generation of sequences that more closely resemble a prediction of sequence data. Moreover, during the prediction step (see prediction.py) under Method #2, the input sequence should be separated by spaces, like so:\
 $sequence = 'M F V F L V L L P L V S S Q C V N L T T R T'
 
-Below is a script in Perl that reads standard input in both of the above sequence formats and then adds a space after each letter (converts the above sequence as shown in Method #1 to the sequence in Method #2). The resulting output should be verified that it appears correctly.
-```
-while(<>){
-   $_=~s/\n//g;
-   $_=~s/<\|endoftext\|>//g;
-   $_=~s/(?<=[a-z])/ /ig;
-   $_=~s/\r//g;
-   print "<|endoftext|>",$_,"<|endoftext|>\n";
-}
-```
+To convert sequence data from Method #1 (condensed) to Method #2 (space-delimited) for use with the tokenizer and model, a Python script `scripts/prepare_dataset.py` is provided. This script reads sequences (one per line, potentially with or without `<|endoftext|>` tokens initially) from an input file (or standard input) and outputs each sequence in Method #2 format, ready for `dataset.fas`. Each processed sequence will have spaces inserted between amino acids and will be wrapped with `<|endoftext|>` tokens on a new line.
+Example usage: `python scripts/prepare_dataset.py input_sequences.txt > dataset.fas`
+
+Internally, this script uses a utility function `format_sequence_with_spaces` located in `protein_utils.py`. This function handles the core logic of removing unwanted characters (newlines, `<|endoftext|>` tokens) and inserting spaces between letters. The `prediction.py` script also utilizes this function to correctly format its input sequence.
 
 ## Running the Model
 The Python code files may be run in Google Colab. The code is currently for use with Google Drive, but the code may be changed for running on a local server or a different method of remote access. In the current code, the input file is named dataset.fas.
