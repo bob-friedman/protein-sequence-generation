@@ -106,6 +106,24 @@ The project has recently been updated to a new PyTorch-based Transformer pipelin
 
 Your feedback is valuable for improving the project! Please raise an issue in the repository for any bugs or suggestions.
 
+## Utility and Example Notebooks
+
+This section highlights notebooks that provide utility functions or demonstrate specific examples related to protein engineering tasks.
+
+### TCR Structure Prediction with ImmuneBuilder (`TCRBuilder2_mamba_setup.ipynb`)
+
+-   **Purpose:** This [Jupyter Colab notebook](notebook/TCRBuilder2_mamba_setup.ipynb) demonstrates how to predict the 3D structure of a T-Cell Receptor (TCR) using the `ImmuneBuilder` library, specifically its `TCRBuilder2` module.
+-   **Environment:** It is designed for Google Colab and includes comprehensive environment setup steps using `mamba` (via `condacolab`) and `pip` to install necessary dependencies such as `ImmuneBuilder`, `ANARCI`, `OpenMM`, `PDBFixer`, and `py3Dmol`.
+-   **Workflow:**
+    1.  Takes TCR alpha and beta chain sequences as input.
+    2.  Uses `ANARCI` for sequence annotation.
+    3.  Employs `TCRBuilder2` to predict the 3D structure.
+    4.  Saves the resulting structure as a PDB file.
+    5.  Visualizes the predicted structure directly within the notebook using `py3Dmol`.
+    6.  Allows for downloading the generated PDB file.
+-   **Usage:** Open the notebook in Google Colab and run the cells sequentially. You can modify the input sequences (`sequence_1`, `sequence_2`) to predict structures for different TCRs.
+-   **Location:** [notebook/TCRBuilder2_mamba_setup.ipynb](notebook/TCRBuilder2_mamba_setup.ipynb)
+
 ## Acknowledgements
 
 Portions of this project were developed with the assistance of Google AI (Jules).
