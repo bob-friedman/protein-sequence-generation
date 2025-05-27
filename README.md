@@ -123,6 +123,7 @@ This section highlights notebooks that provide utility functions or demonstrate 
     6.  Allows for downloading the generated PDB file.
 -   **Usage:** Open the notebook in Google Colab and run the cells sequentially. You can modify the input sequences (`sequence_1`, `sequence_2`) to predict structures for different TCRs.
 -   **Location:** [notebook/TCRBuilder2_mamba_setup.ipynb](notebook/TCRBuilder2_mamba_setup.ipynb)
+-   **Original Source:** Abanades, B.; Wong, W.K.; Boyles, F.; Georges, G.; Bujotzek, A.; Deane, C.M. ImmuneBuilder: Deep-Learning models for predicting the structures of immune proteins. Commun. Biol. 2023, 6, 575.
 
 ## Acknowledgements
 
