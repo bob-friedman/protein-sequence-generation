@@ -28,6 +28,16 @@ Example usage: `python scripts/prepare_dataset.py input_sequences.txt > dataset.
 
 Internally, this script uses a utility function `format_sequence_with_spaces` located in `protein_utils.py`. This function handles the core logic of removing unwanted characters (newlines, `<|endoftext|>` tokens) and inserting spaces between letters. The `prediction.py` script also utilizes this function to correctly format its input sequence.
 
+## Important Note on Script Versions
+
+The older scripts for model training and prediction, namely `train.py` and `prediction.py`, have been archived into the `archived_scripts/` directory.
+
+The current, recommended scripts to use are the PyTorch-based versions:
+-   `train_pytorch.py` for training the model.
+-   `predict_pytorch.py` for generating sequences with a trained model.
+
+Please refer to the instructions below for using these updated scripts.
+
 ## Running the Model (PyTorch Transformer)
 
 This project uses a custom PyTorch-based Transformer model for generating protein sequences. The workflow involves three main scripts: `tokenizer.py` (for preparing the tokenizer), `train_pytorch.py` (for training the model), and `predict_pytorch.py` (for generating sequences).
