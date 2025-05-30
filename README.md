@@ -140,16 +140,14 @@ This section highlights notebooks that provide utility functions or demonstrate 
 Portions of this project were developed with the assistance of Google AI (Jules).
 The underlying concepts for protein sequence generation draw inspiration from the original ProtGPT2 work and the Hugging Face Transformers library.
 
-## Citation
-If you use the software in this repository, please cite the following research article:
-[https://www.mdpi.com/2073-8994/14/11/2274](https://www.mdpi.com/2073-8994/14/11/2274)
-
-## License
-These code files are for examples on creating a generative model for protein sequence data. They may be expanded upon as described in the LICENSE file (Apache License v2.0). This license is identical to the Huggingface transformers API. It is an open-source and permissive software license.
-
-## Credits
 The concept is based on the ProtGPT2 research study and published article:\
 https://www.nature.com/articles/s41467-022-32007-7 (ProtGPT2 publication)\
 https://huggingface.co/nferruz/ProtGPT2 (ProtGPT2 files for generative model)\
 https://openai.com/blog/better-language-models (GPT-2)\
 https://huggingface.co (Huggingface API)
+
+If you use the software in this repository, please cite the following research article:
+[https://www.mdpi.com/2073-8994/14/11/2274](https://www.mdpi.com/2073-8994/14/11/2274)
+
+## License
+These code files are for examples on creating a generative model for protein sequence data. They may be expanded upon as described in the LICENSE file (Apache License v2.0). This license is identical to the Huggingface transformers API. It is an open-source and permissive software license.
